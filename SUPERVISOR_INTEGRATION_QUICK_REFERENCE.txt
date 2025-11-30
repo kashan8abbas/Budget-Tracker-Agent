@@ -1,0 +1,76 @@
+BUDGET TRACKER AGENT - SUPERVISOR INTEGRATION QUICK REFERENCE
+================================================================
+
+Copy and paste these values into your supervisor agent integration form:
+
+1. AGENT NAME (snake_case):
+   budget_tracker_agent
+
+2. DESCRIPTION (1-2 sentences):
+   A budget tracking and analysis agent that monitors spending, predicts overspending risks, detects anomalies in expense patterns, and provides recommendations for budget management. Supports natural language queries and multi-project budget tracking.
+
+3. INTENTS (JSON array):
+   ["budget.check", "budget.update", "budget.predict", "budget.recommend", "budget.analyze", "budget.report", "budget.question", "budget.list"]
+
+4. ENDPOINT URL:
+   https://YOUR-APP-NAME.onrender.com/api/query
+   
+   ⚠️ IMPORTANT: Replace YOUR-APP-NAME with your actual Render deployment name!
+   Example: https://budget-tracker-agent.onrender.com/api/query
+
+5. HEALTH CHECK URL (optional but recommended):
+   https://YOUR-APP-NAME.onrender.com/api/health
+   
+   ⚠️ IMPORTANT: Replace YOUR-APP-NAME with your actual Render deployment name!
+   Example: https://budget-tracker-agent.onrender.com/api/health
+
+6. TIMEOUT (milliseconds):
+   5000
+
+================================================================
+INTENT DESCRIPTIONS:
+================================================================
+
+- budget.check: Check budget status, remaining amount, current spending
+- budget.update: Update spending amounts or budget limits
+- budget.predict: Predict future spending and overspending risks
+- budget.recommend: Get recommendations for budget management
+- budget.analyze: Analyze spending patterns, trends, and anomalies
+- budget.report: Generate budget reports and summaries
+- budget.question: Answer general questions about budget status
+- budget.list: List all projects and their budgets
+
+================================================================
+EXAMPLE QUERIES (All via /api/query endpoint):
+================================================================
+
+Budget Operations:
+- "Check my budget status"
+- "I spent 5000 today"
+- "Will we exceed budget?"
+- "Analyze my spending patterns"
+- "Give me budget recommendations"
+- "Generate a budget report"
+
+Project Operations (automatic):
+- "Check budget for Mobile App project"
+- "How is Website Redesign doing?"
+- "What's the budget for Marketing Campaign?"
+- "List all my projects and their budget"
+- "Show all projects"
+
+================================================================
+IMPORTANT: Single Endpoint for Everything
+================================================================
+
+✅ The /api/query endpoint handles ALL operations through natural language:
+- Budget checking, updates, predictions, analysis, reports
+- Project creation and selection (automatic)
+- Multi-project support
+- Context awareness (remembers previous queries)
+
+You don't need to use the other endpoints (/api/analyze, /api/update, etc.)
+Everything can be done through the single /api/query POST endpoint!
+
+================================================================
+

@@ -62,7 +62,7 @@ Analyze the user's query and determine:
 
 Return JSON in this exact format:
 {
-  "intent": "check" | "update" | "predict" | "recommend" | "analyze" | "report" | "question",
+  "intent": "check" | "update" | "predict" | "recommend" | "analyze" | "report" | "question" | "list",
   "project_name": <string or null>,
   "parameters": {
     "budget_limit": <number or null>,
@@ -95,6 +95,9 @@ Intent meanings (CRITICAL - Classify accurately):
   
 - "question": General question about budget, alerts, warnings, red flags
   Examples: "Alert me if overspending risk is high", "Check if there are red flags", "Overspent ho rahe hain kya?", "Kharchay normal hain ya zyada?"
+
+- "list": User wants to list all projects, see all projects, show all projects, get all projects
+  Examples: "List all my projects", "Show all projects and their budgets", "List all my projects and their budget", "What projects do I have?", "Show me all projects", "Get all projects", "Display all projects"
 
 Special handling:
 - Team/Department queries: "How is marketing team's budget?" → Extract "marketing team" as project_name, intent: "check"

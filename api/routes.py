@@ -85,6 +85,69 @@ async def process_natural_language_query(request: QueryRequest):
             message_id=f"api-{uuid.uuid4().hex[:8]}"
         )
         
+        # Check if intent is "list" - handle listing all projects
+        intent = task_assignment["task"].get("intent", "check")
+        if intent == "list":
+            # Handle "list all projects" query
+            agent = create_agent()
+            projects = agent.list_projects()
+            current_project_id = agent.get_current_project_id()
+            agent.close()
+            
+            # Convert to ProjectResponse format
+            from api.models import ProjectResponse, ProjectListResponse
+            project_responses = []
+            for proj in projects:
+                # Normalize history if needed
+                history = proj.get("history", [])
+                if history and isinstance(history[0], dict):
+                    # Extract amounts from history objects
+                    history_amounts = [h.get("amount", h.get("value", 0)) for h in history if isinstance(h, dict)]
+                else:
+                    history_amounts = history if isinstance(history, list) else []
+                
+                project_responses.append(ProjectResponse(
+                    success=True,
+                    project_id=proj["project_id"],
+                    project_name=proj["project_name"],
+                    budget_limit=proj["budget_limit"],
+                    spent=proj["spent"],
+                    remaining=proj["remaining"],
+                    history=history_amounts,
+                    description=proj.get("description"),
+                    status=proj.get("status", "active"),
+                    created_at=proj.get("created_at"),
+                    last_updated=proj.get("last_updated")
+                ))
+            
+            # Generate natural language response for project list
+            if project_responses:
+                response_lines = [f"📋 **All Projects ({len(project_responses)}):**\n"]
+                for proj in project_responses:
+                    response_lines.append(
+                        f"• **{proj.project_name}** (ID: {proj.project_id})\n"
+                        f"  - Budget: ${proj.budget_limit:,.2f}\n"
+                        f"  - Spent: ${proj.spent:,.2f}\n"
+                        f"  - Remaining: ${proj.remaining:,.2f}\n"
+                    )
+                conversational_response = "\n".join(response_lines)
+            else:
+                conversational_response = "No projects found. Create a project by mentioning it in a query like 'Check budget for My Project'."
+            
+            # Return as BudgetAnalysisResponse with project list info in response field
+            return BudgetAnalysisResponse(
+                success=True,
+                project_id=current_project_id,
+                project_name=None,
+                remaining=0,
+                spending_rate=None,
+                overshoot_risk=False,
+                predicted_spending=0,
+                anomalies=[],
+                recommendations=[],
+                response=conversational_response
+            )
+        
         # Initialize agent
         agent = create_agent()
         
