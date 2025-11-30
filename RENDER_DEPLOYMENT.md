@@ -2,9 +2,18 @@
 
 This guide will help you deploy the Budget Tracker Agent API to Render's free tier.
 
+## ⚠️ Important: Credit Card Requirement
+
+**Render requires a credit card for verification even for free tier services.** However:
+- ✅ They **do NOT charge** for free tier services
+- ✅ Card is only used for verification and preventing abuse
+- ✅ You'll only be charged if you manually upgrade to a paid plan
+
+**If you prefer not to add a card**, see `DEPLOYMENT_ALTERNATIVES.md` for free options like PythonAnywhere or Replit that don't require credit cards.
+
 ## Prerequisites
 
-1. A [Render account](https://render.com) (free tier available)
+1. A [Render account](https://render.com) (free tier available, card required for verification)
 2. A GitHub repository with your code (or use Render's Git integration)
 3. Google Gemini API key
 4. MongoDB connection string (MongoDB Atlas free tier recommended)
