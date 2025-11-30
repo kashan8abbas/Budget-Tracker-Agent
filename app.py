@@ -54,6 +54,9 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    # Use PORT from environment (Render provides this) or default to 8000
+    port = int(os.getenv("PORT", 8000))
     # Use reload=False when running directly, or use: uvicorn app:app --reload
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run(app, host="0.0.0.0", port=port, reload=False)
 
