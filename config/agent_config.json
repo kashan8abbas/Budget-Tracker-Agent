@@ -1,0 +1,13 @@
+{
+  "agent_id": "BudgetTrackerAgent",
+  "supervisor_id": "SupervisorAgent",
+  "ltm_path": "LTM/BudgetTrackerAgent/memory.json",
+  "log_level": "INFO",
+  "enable_ltm_cache": true,
+  "anomaly_threshold_multiplier": 2.0,
+  "recommendation_reduction_percentage_min": 10,
+  "recommendation_reduction_percentage_max": 20,
+  "mongo_uri": "mongodb+srv://kashan_abbas:RqETmpQ5Z4bwjbTL@mernapp.1grlr.mongodb.net/?appName=MERNApp",
+  "mongo_db_name": "Budget_Tracker_Agent"
+}
+

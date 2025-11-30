@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "budget-tracker-api",
+		"name": "Budget Tracker Agent API",
+		"description": "Complete API collection for Budget Tracker Agent with MongoDB Atlas integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/health",
+					"host": ["{{base_url}}"],
+					"path": ["api", "health"]
+				},
+				"description": "Check if the service and MongoDB are connected"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Current Budget",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/budget",
+					"host": ["{{base_url}}"],
+					"path": ["api", "budget"]
+				},
+				"description": "Get the current budget state from LTM"
+			},
+			"response": []
+		},
+		{
+			"name": "Natural Language Query - Check Budget",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"Check my budget: 50000 limit, 42000 spent\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "query"]
+				},
+				"description": "Process a natural language query about budget"
+			},
+			"response": []
+		},
+		{
+			"name": "Natural Language Query - Update Spending",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"I spent 5000 today\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "query"]
+				},
+				"description": "Update spending using natural language"
+			},
+			"response": []
+		},
+		{
+			"name": "Natural Language Query - Predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"Will I exceed my budget? Budget is 50000, spent 42000, history [5000, 7000, 8000, 6000]\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "query"]
+				},
+				"description": "Predict overspending risk"
+			},
+			"response": []
+		},
+		{
+			"name": "Analyze Budget - Basic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"parameters\": {\n    \"budget_limit\": 50000,\n    \"spent\": 42000\n  },\n  \"intent\": \"check\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/analyze",
+					"host": ["{{base_url}}"],
+					"path": ["api", "analyze"]
+				},
+				"description": "Analyze budget with basic parameters"
+			},
+			"response": []
+		},
+		{
+			"name": "Analyze Budget - With History",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"parameters\": {\n    \"budget_limit\": 100000,\n    \"spent\": 30000,\n    \"history\": [5000, 6000, 7000, 8000, 4000]\n  },\n  \"intent\": \"analyze\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/analyze",
+					"host": ["{{base_url}}"],
+					"path": ["api", "analyze"]
+				},
+				"description": "Analyze budget with spending history"
+			},
+			"response": []
+		},
+		{
+			"name": "Analyze Budget - Predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"parameters\": {\n    \"budget_limit\": 50000,\n    \"spent\": 45000,\n    \"history\": [10000, 12000, 11000, 12000]\n  },\n  \"intent\": \"predict\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/analyze",
+					"host": ["{{base_url}}"],
+					"path": ["api", "analyze"]
+				},
+				"description": "Predict overspending risk"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Budget - Add to Spent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"update_type\": \"add\",\n  \"update_field\": \"spent\",\n  \"update_value\": 5000\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/update",
+					"host": ["{{base_url}}"],
+					"path": ["api", "update"]
+				},
+				"description": "Add to spent amount (also adds to history)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Budget - Replace Spent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"update_type\": \"replace\",\n  \"update_field\": \"spent\",\n  \"update_value\": 45000\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/update",
+					"host": ["{{base_url}}"],
+					"path": ["api", "update"]
+				},
+				"description": "Replace spent amount"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Budget - Set Budget Limit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"update_type\": \"set\",\n  \"update_field\": \"budget_limit\",\n  \"update_value\": 60000\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/update",
+					"host": ["{{base_url}}"],
+					"path": ["api", "update"]
+				},
+				"description": "Set budget limit"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Budget - Add to History",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"update_type\": \"add\",\n  \"update_field\": \"history\",\n  \"update_value\": [5000, 6000, 7000]\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/update",
+					"host": ["{{base_url}}"],
+					"path": ["api", "update"]
+				},
+				"description": "Add to spending history"
+			},
+			"response": []
+		},
+		{
+			"name": "Root Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": ["{{base_url}}"],
+					"path": [""]
+				},
+				"description": "Get API information"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
+

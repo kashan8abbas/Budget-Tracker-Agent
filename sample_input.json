@@ -1,0 +1,17 @@
+{
+  "message_id": "x1",
+  "sender": "SupervisorAgent",
+  "recipient": "BudgetTrackerAgent",
+  "type": "task_assignment",
+  "task": {
+    "name": "analyze_budget",
+    "priority": 1,
+    "parameters": {
+      "budget_limit": 50000,
+      "spent": 42000,
+      "history": [5000, 7000, 8000, 6000]
+    }
+  },
+  "timestamp": "2025-11-29T19:00:00Z"
+}
+

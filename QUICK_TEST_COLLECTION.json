@@ -1,0 +1,270 @@
+{
+  "info": {
+    "name": "Budget Tracker - Quick Test Collection",
+    "description": "Essential tests for Budget Tracker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Project - Website Redesign",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_name\": \"Website Redesign\",\n  \"budget_limit\": 50000,\n  \"description\": \"Complete website overhaul\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/projects",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "projects"]
+        }
+      }
+    },
+    {
+      "name": "2. Create Project - Mobile App",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_name\": \"Mobile App Development\",\n  \"budget_limit\": 100000\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/projects",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "projects"]
+        }
+      }
+    },
+    {
+      "name": "3. List All Projects",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/api/projects",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "projects"]
+        }
+      }
+    },
+    {
+      "name": "4. Check Budget - Initial Setup",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Check my budget for Website Redesign: 50000 limit, 10000 spent\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "5. Add Spending - First Time",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"I spent 5000 today on Website Redesign project\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "6. Add More Spending",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Add 3000 more to Website Redesign expenses\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "7. Check Remaining Budget",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"How much budget remaining for Website Redesign?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "8. Analyze Budget with History",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Analyze my Website Redesign budget: limit 50000, spent 30000, history is 5000, 6000, 7000, 5000, 25000, 6000\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "9. Switch to Mobile App Project",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Check budget for Mobile App Development: 100000 limit, 40000 spent\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "10. Predict Overspending",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Will I exceed my Mobile App budget? Limit 100000, spent 80000, history is 10000, 12000, 15000, 18000, 20000\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "11. Get Recommendations",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Suggest ways to manage my Mobile App budget\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "12. Natural Language - Casual",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"yo check my budget 50k limit spent 42k\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "13. Natural Language - Formal",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Please analyze my budget. The limit is fifty thousand dollars and I have spent forty-two thousand dollars.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    },
+    {
+      "name": "14. Get Current Budget",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/api/budget",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "budget"]
+        }
+      }
+    },
+    {
+      "name": "15. Update Budget Limit",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Update Website Redesign budget limit to 75000\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/query",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "query"]
+        }
+      }
+    }
+  ]
+}
+

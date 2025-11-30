@@ -1,0 +1,21 @@
+{
+  "tasks": {
+    "analyze_budget:10000.0:45.0:no_history": {
+      "remaining": 9955.0,
+      "spending_rate": null,
+      "overshoot_risk": false,
+      "predicted_spending": 45.0,
+      "anomalies": [],
+      "recommendations": [
+        "\u2705 Good budget health: 99.6% remaining",
+        "Continue current spending patterns"
+      ]
+    }
+  },
+  "current_budget": {
+    "budget_limit": 10000.0,
+    "spent": 45.0,
+    "history": [],
+    "last_updated": "2025-11-29T18:22:05.008963Z"
+  }
+}
